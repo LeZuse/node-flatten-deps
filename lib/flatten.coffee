@@ -3,9 +3,10 @@ path = require 'path'
 glob = require 'glob'
 CSON = require 'season'
 rimraf = require 'rimraf'
-topModulesPath = path.resolve path.join './', 'node_modules'
 
-run = ->
+run = (root='./') ->
+  topModulesPath = path.resolve path.join root, 'node_modules'
+
   # moved from deep lvl to the root
   moved = []
 
@@ -53,14 +54,14 @@ run = ->
     console.log "cwd:", process.cwd()
 
     # cwd: topModulesPath
-    glob "./node_modules/**/node_modules/*", {}, (err, files) ->
+    glob "./node_modules/**/node_modules/*", {cwd: root}, (err, files) ->
       files.reverse() # start moving folders from deepest to more shallow
       # console.log(files);
       console.log files.length, "deps"
 
       for file in files
         depName = path.basename(file)
-        moveIfPossible file, path.join(topModulesPath, depName)
+        moveIfPossible path.join(root, file), path.join(topModulesPath, depName)
 
         # remove node_modules IF empty
         try
