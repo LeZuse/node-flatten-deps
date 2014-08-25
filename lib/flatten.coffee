@@ -16,6 +16,8 @@ run = (root='./') ->
   # target already existed; same version, removed
   duplicates = []
 
+  longest = ''
+
   compareVersions = (pOne, pTwo) ->
     fromP = path.join(pOne, "package.json")
     toP = path.join(pTwo, "package.json")
@@ -35,6 +37,8 @@ run = (root='./') ->
         console.log err
     console.log "Skipping", pOne
     skipped.push path.basename(pOne)
+    if pOne.length > longest.length
+      longest = pOne
     -1
 
   moveIfPossible = (from, to) ->
@@ -54,7 +58,8 @@ run = (root='./') ->
     console.log "cwd:", process.cwd()
 
     # cwd: topModulesPath
-    glob "./node_modules/**/node_modules/*", {cwd: root}, (err, files) ->
+    files = glob.sync "./node_modules/**/node_modules/*", {cwd: root}
+    if files.length > 0
       files.reverse() # start moving folders from deepest to more shallow
       # console.log(files);
       console.log files.length, "deps"
@@ -68,8 +73,10 @@ run = (root='./') ->
           # rmdir does not delete non empty folders
           fs.rmdirSync path.dirname(file)
 
-      console.log('moved', moved, moved.length,
+      console.log 'moved', moved, moved.length,
       'skipped', skipped, skipped.length,
-      'duplicates', duplicates, duplicates.length);
+      'duplicates', duplicates, duplicates.length,
+      'longest', longest,
+      'effective chars', longest.length - root.length
 
 module.exports = run
