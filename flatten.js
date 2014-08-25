@@ -1,2 +1,2 @@
 require('coffee-script/register');
-require('./lib/flatten');
+module.exports = require('./lib/flatten');

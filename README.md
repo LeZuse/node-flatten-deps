@@ -19,4 +19,3 @@ flatten-deps
 
 ## TODO
  - Tests
- - Expose function programmatically
