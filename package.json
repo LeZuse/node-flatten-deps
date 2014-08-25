@@ -11,6 +11,14 @@
     "url": "https://github.com/LeZuse/node-flatten-deps"
   },
   "bugs": "https://github.com/LeZuse/node-flatten-deps/issues",
+  "keywords": [
+    "flatten",
+    "dependencies",
+    "modules",
+    "node_modules",
+    "dedupe",
+    "shrinkwrap"
+  ],
   "bin": {
     "flatten-deps": "./bin/flatten-deps"
   },
