@@ -1,0 +1,29 @@
+{
+  "name": "flatten-deps",
+  "version": "0.1.0",
+  "description": "Moves node depedencies up the tree to prevent long paths (Windows limits length to 260)",
+  "main": "flatten.js",
+  "author": "Tomas Ruzicka <tomasruzicka@abdoc.net> (https://github.com/lezuse)",
+  "license": "MIT",
+  "homepage": "https://github.com/LeZuse/node-flatten-deps",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LeZuse/node-flatten-deps"
+  },
+  "bugs": "https://github.com/LeZuse/node-flatten-deps/issues",
+  "bin": {
+    "flatten-deps": "./bin/flatten-deps"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "glob": "~4.0.5",
+    "season": "~2.0.0",
+    "rimraf": "~2.2.8",
+    "coffee-script": "~1.7.1"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}
