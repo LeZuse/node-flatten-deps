@@ -1,7 +1,7 @@
 {
   "name": "flatten-deps",
   "version": "0.1.0",
-  "description": "Moves node depedencies up the tree to prevent long paths (Windows limits length to 260)",
+  "description": "Moves node dependencies up the tree to prevent long paths (Windows limits length to 260)",
   "main": "flatten.js",
   "author": "Tomas Ruzicka <tomasruzicka@abdoc.net> (https://github.com/lezuse)",
   "license": "MIT",
