@@ -36,5 +36,9 @@
   },
   "publishConfig": {
     "registry": "http://registry.npmjs.org/"
+  },
+  "devDependencies": {
+    "mocha": "~1.21.4",
+    "wrench": "~1.5.8"
   }
 }

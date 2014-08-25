@@ -53,7 +53,10 @@ run = (root='./') ->
       moved.push path.basename(from)
       fs.renameSync from, to
 
-  if fs.existsSync(topModulesPath)
+  if not fs.existsSync root
+    return console.log 'Root does not exist.'
+
+  if fs.existsSync topModulesPath
     console.log "to:", topModulesPath
     console.log "cwd:", process.cwd()
 
@@ -61,7 +64,7 @@ run = (root='./') ->
     files = glob.sync "./node_modules/**/node_modules/*", {cwd: root}
     if files.length > 0
       files.reverse() # start moving folders from deepest to more shallow
-      # console.log(files);
+      console.log(files)
       console.log files.length, "deps"
 
       for file in files
@@ -71,12 +74,15 @@ run = (root='./') ->
         # remove node_modules IF empty
         try
           # rmdir does not delete non empty folders
-          fs.rmdirSync path.dirname(file)
+          fs.rmdirSync path.dirname path.join(root, file)
 
       console.log 'moved', moved, moved.length,
       'skipped', skipped, skipped.length,
       'duplicates', duplicates, duplicates.length,
       'longest', longest,
       'effective chars', longest.length - root.length
+
+  else
+    console.log 'Root does not have any installed dependencies.'
 
 module.exports = run
