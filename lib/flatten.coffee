@@ -73,10 +73,11 @@ run = (root='./') ->
           # rmdir does not delete non empty folders
           fs.rmdirSync path.dirname(file)
 
-      console.log 'moved', moved, moved.length,
-      'skipped', skipped, skipped.length,
-      'duplicates', duplicates, duplicates.length,
-      'longest', longest,
-      'effective chars', longest.length - root.length
+      console.log '\nMoved (to the topmost \'node_modules\' folder):', moved.length, '\n', moved.sort().join(', '),
+      '\n\nSkipped (different versions):', skipped.length, '\n', skipped.sort().join(', '),
+      '\n\nDuplicates (same versions, removed):', duplicates.length, '\n', duplicates.sort().join(', ')
+
+      console.log '\nLongest path:', longest
+      console.log '\nEffective chars:', longest.length - root.length
 
 module.exports = run
